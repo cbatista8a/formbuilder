@@ -1,0 +1,17 @@
+{
+    "name": "cbatista8a/formbuilder",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Cbatista8a\\Formbuilder\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Carlos Batista",
+            "email": "cbatista8a@gmail.com"
+        }
+    ],
+    "require": {}
+}
