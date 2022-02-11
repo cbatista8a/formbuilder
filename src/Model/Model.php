@@ -10,6 +10,8 @@ class Model implements Form
     public string $lastname = 'pallino';
     public int $age = 30;
     public string $email = 'ciao@gmail.com';
+    private $descripion = 'xfhcnshodrsjgvhmsdlkgjl dvgvhsglkmsvg hglhnuivghrjrt';
+    private $id = 1;
 
     /**
      * @return Field[]
