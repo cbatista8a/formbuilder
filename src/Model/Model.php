@@ -23,14 +23,4 @@ class Model implements Form
             new Field('email','email','email-field',true,$this->email)
         ];
     }
-
-    public function getFormAction(): string
-    {
-        return '/index.php';
-    }
-
-    public function getFormMethod(): string
-    {
-        return "POST";
-    }
 }
