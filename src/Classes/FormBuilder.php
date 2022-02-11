@@ -41,10 +41,10 @@ class FormBuilder
 
     private function getFormHeader()
     {
-        return "<form action='{$this->model->getFormAction()}'
-                method='{$this->model->getFormMethod()}'
-                class='{$this->classes}'
+        return "<form action='{$this->action}'
+                method='{$this->method}'
                 id='{$this->id}'
+                class='{$this->classes}'
                 >";
     }
 
