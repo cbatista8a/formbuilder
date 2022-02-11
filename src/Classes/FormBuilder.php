@@ -5,17 +5,26 @@ use Cbatista8a\Formbuilder\Interfaces\Form;
 
 class FormBuilder
 {
-    private Form $model;
+    private string $id;
     private string $classes;
-    private string $submit_name;
-    private $id;
+    private string $action;
+    private string $method;
+    /**
+     * @var Input[]
+     */
+    private array $fields;
+    /**
+     * @var string[]
+     */
+    private array $groups;
 
-    public function __construct(Form $model, $id, $submit_name = 'Submit', $classes = 'form')
+    public function __construct(string $id,string $action, string $method, string $classes = 'form')
     {
-        $this->model = $model;
-        $this->classes = $classes;
         $this->id = $id;
-        $this->submit_name = $submit_name;
+        $this->classes = $classes;
+        $this->action = $action;
+        $this->method = $method;
+        $this->addElement(new Input('hidden','method','',true,$method));
     }
 
     public function build(): string
