@@ -44,13 +44,23 @@ class FormBuilder
         return "</form>";
     }
 
-    private function getFormButton()
+    public function addElement(HtmlElement $field, string $group_name = 'group', string $group_classes = 'row'): FormBuilder
     {
-        return "<button
-                type='submit'
-                name='{$this->submit_name}'
-                >
-                {$this->submit_name}
-                </button>";
+        $this->fields[$group_name][] = $field;
+        $this->groups[$group_name] = $group_classes.' form-group';
+        return $this;
+    }
+
+    /**
+     * @param $group
+     * @return string
+     */
+    private function renderElementsGroup($group): string
+    {
+        $elements = "";
+        foreach ($this->fields[$group] as $field) {
+            $elements .= $field->render();
+        }
+        return $elements;
     }
 }
