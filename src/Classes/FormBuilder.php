@@ -1,7 +1,7 @@
 <?php
 namespace Cbatista8a\Formbuilder\Classes;
 
-use Cbatista8a\Formbuilder\Interfaces\Form;
+use Cbatista8a\Formbuilder\Interfaces\HtmlElement;
 
 class FormBuilder
 {
@@ -30,10 +30,11 @@ class FormBuilder
     public function build(): string
     {
         $form = $this->getFormHeader();
-        foreach ($this->model->getFormFields() as $field){
-            $form .= $field->render();
+        foreach ($this->groups as $group => $classes){
+            $form .= "<div id='{$group}' class='{$classes}'>";
+            $form .= $this->renderElementsGroup($group);
+            $form .= "</div>";
         }
-        $form .= $this->getFormButton();
         $form .= $this->getFormCloseTag();
 
         return $form;
