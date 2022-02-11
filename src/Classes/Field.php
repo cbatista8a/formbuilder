@@ -1,22 +1,22 @@
 <?php
-namespace Cbatista8a\Formbuilder\Model;
+
+
+namespace Cbatista8a\Formbuilder\Classes;
+
 
 class Field
 {
-
-    private string $type;
-    private string $name;
-    private string $id;
-    private string $required;
-    private string $classes;
+    protected string $name;
+    protected string $id;
+    protected string $required;
+    protected string $classes;
     /**
      * @var mixed
      */
-    private $value;
+    protected $value;
 
-    public function __construct(string $type,string $name, string $id, bool $required,$value = null,string $classes = 'form-input')
+    public function __construct(string $name, string $id, bool $required, $value = null, string $classes = 'form-input')
     {
-        $this->type = $type;
         $this->name = $name;
         $this->value = $value ?? '';
         $this->id = $id;
@@ -24,13 +24,6 @@ class Field
         $this->classes = $classes;
     }
 
-    /**
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->type;
-    }
 
     /**
      * @return string
@@ -72,16 +65,4 @@ class Field
         return $this->value;
     }
 
-    public function render()
-    {
-        return "
-                <input type='{$this->type}'
-                        name='{$this->name}'
-                        id='{$this->id}'
-                        class='{$this->classes}'
-                        value='{$this->value}'
-                        {$this->required}
-                >
-        ";
-    }
 }
