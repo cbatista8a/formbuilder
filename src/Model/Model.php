@@ -1,7 +1,10 @@
 <?php
 namespace Cbatista8a\Formbuilder\Model;
 
+use Cbatista8a\Formbuilder\Classes\Input;
+use Cbatista8a\Formbuilder\Classes\TextArea;
 use Cbatista8a\Formbuilder\Interfaces\Form;
+use Cbatista8a\Formbuilder\Interfaces\HtmlElement;
 
 class Model implements Form
 {
@@ -14,15 +17,17 @@ class Model implements Form
     private $id = 1;
 
     /**
-     * @return Field[]
+     * @return HtmlElement[]
      */
     public function getFormFields(): array
     {
         return [
-            new Field('text','name','name-field',true,$this->name),
-            new Field('text','lastname','lastname-field',true,$this->lastname),
-            new Field('number','age','age-field',false,$this->age),
-            new Field('email','email','email-field',true,$this->email)
+            new Input('hidden', 'id', 'hidden-id', true, $this->id),
+            new Input('text', 'name', 'name-field', true, $this->name),
+            new Input('text', 'lastname', 'lastname-field', true, $this->lastname),
+            new Input('number', 'age', 'age-field', false, $this->age),
+            new Input('email', 'email', 'email-field', true, $this->email),
+            new TextArea('description', 'description-field', false,  $this->descripion)
         ];
     }
 }
