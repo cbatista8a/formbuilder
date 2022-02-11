@@ -40,7 +40,7 @@ class FormBuilder
         return $form;
     }
 
-    private function getFormHeader()
+    private function getFormHeader(): string
     {
         return "<form action='{$this->action}'
                 method='{$this->method}'
@@ -49,7 +49,7 @@ class FormBuilder
                 >";
     }
 
-    private function getFormCloseTag()
+    private function getFormCloseTag(): string
     {
         return "</form>";
     }
