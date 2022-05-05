@@ -3,12 +3,8 @@ namespace Cbatista8a\Formbuilder\Classes;
 
 use Cbatista8a\Formbuilder\Interfaces\HtmlElement;
 
-class FormBuilder
+class FormBuilder extends Element
 {
-    private string $id;
-    private string $classes;
-    private string $action;
-    private string $method;
     /**
      * @var Input[]
      */
@@ -18,13 +14,14 @@ class FormBuilder
      */
     private array $groups;
 
-    public function __construct(string $id,string $action, string $method, string $classes = 'form')
+    public function __construct($method = HttpMethod::POST)
     {
-        $this->id = $id;
-        $this->classes = $classes;
-        $this->action = $action;
-        $this->method = $method;
-        $this->addElement(new Input('hidden','method','',true,$method));
+        parent::__construct();
+        $this->addElement(
+            (new Input('hidden'))
+                ->addAttribute(new Attribute('method',$method))
+            );
+        $this->addAttribute(new Attribute('method',$method));
     }
 
     public function build(): string
@@ -42,10 +39,8 @@ class FormBuilder
 
     private function getFormHeader(): string
     {
-        return "<form action='{$this->action}'
-                method='{$this->method}'
-                id='{$this->id}'
-                class='{$this->classes}'
+        return "<form 
+                   {$this->renderHtmlAttributes()}
                 >";
     }
 

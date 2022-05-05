@@ -1,16 +1,17 @@
 <?php
+
 namespace Cbatista8a\Formbuilder\Classes;
 
 use Cbatista8a\Formbuilder\Interfaces\HtmlElement;
 
-class Input extends Field implements HtmlElement
+class Input extends Element implements HtmlElement
 {
 
     private string $type;
 
-    public function __construct(string $type, string $name, string $id, bool $required, $value = null, string $classes = 'form-input')
+    public function __construct(string $type)
     {
-        parent::__construct( $name, $id, $required, $value, $classes);
+        parent::__construct();
         $this->type = $type;
     }
 
@@ -22,15 +23,10 @@ class Input extends Field implements HtmlElement
         return $this->type;
     }
 
-    public function render() :string
+    public function render(): string
     {
-        return "
-                <input type='{$this->type}'
-                        name='{$this->name}'
-                        id='{$this->id}'
-                        class='{$this->classes}'
-                        value='{$this->value}'
-                        {$this->required}
+        return "<input type='{$this->type}'
+                   {$this->renderHtmlAttributes()}
                 >
         ";
     }
