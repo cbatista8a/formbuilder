@@ -2,7 +2,7 @@
 namespace Cbatista8a\Formbuilder\Interfaces;
 
 
-interface Form
+interface ModelFormImplementer
 {
 
     /**
