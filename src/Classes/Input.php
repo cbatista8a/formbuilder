@@ -2,16 +2,13 @@
 
 namespace Cbatista8a\Formbuilder\Classes;
 
-use Cbatista8a\Formbuilder\Interfaces\HtmlElement;
-
-class Input extends Element implements HtmlElement
+class Input extends Element
 {
 
     private string $type;
 
     public function __construct(string $type)
     {
-        parent::__construct();
         $this->type = $type;
     }
 

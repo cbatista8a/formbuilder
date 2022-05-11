@@ -16,7 +16,7 @@ class FormBuilder extends Element
 
     public function __construct($method = HttpMethod::POST)
     {
-        parent::__construct();
+        //parent::__construct();
         $this->addElement(
             (new Input('hidden'))
                 ->addAttribute(new Attribute('method',$method))
@@ -63,9 +63,18 @@ class FormBuilder extends Element
     private function renderElementsGroup($group): string
     {
         $elements = "";
+        /** @var HtmlElement $field */
         foreach ($this->fields[$group] as $field) {
             $elements .= $field->render();
         }
         return $elements;
+    }
+
+    /**
+     * @return string
+     */
+    public function render(): string
+    {
+        return $this->build();
     }
 }
