@@ -42,12 +42,8 @@ class Model implements ModelFormImplementer
             (new Input('email'))
                 ->addAttribute(new Attribute('name','email'))
                 ->addAttribute(new Attribute('class','form-field'))
-                ->addAttribute(new Attribute('required',true))
+                ->addAttribute(new Attribute('required',null))
                 ->addAttribute(new Attribute('value',$this->email)),
-            (new Input('text'))
-                ->addAttribute(new Attribute('class','form-field'))
-                ->addAttribute(new Attribute('value',$this->name)),
-
             (new TextArea())
                 ->addAttribute(new Attribute('class','form-field'))
                 ->addAttribute(new Attribute('name','description'))
