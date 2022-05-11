@@ -1,7 +1,9 @@
 <?php
+
 namespace Cbatista8a\Formbuilder\Classes;
 
 use Cbatista8a\Formbuilder\Interfaces\HtmlElement;
+use Cbatista8a\Formbuilder\Interfaces\ModelFormImplementer;
 
 class FormBuilder extends Element
 {
@@ -16,18 +18,39 @@ class FormBuilder extends Element
 
     public function __construct($method = HttpMethod::POST)
     {
-        //parent::__construct();
         $this->addElement(
             (new Input('hidden'))
-                ->addAttribute(new Attribute('method',$method))
-            );
-        $this->addAttribute(new Attribute('method',$method));
+                ->addAttribute(new Attribute('method', $method))
+        )->addAttribute(new Attribute('method', $method));
+    }
+
+    public function addElement(HtmlElement $field, string $group_name = 'group', string $group_classes = 'row'): FormBuilder
+    {
+        $this->fields[$group_name][] = $field;
+        $this->groups[$group_name] = $group_classes . ' form-group';
+        return $this;
+    }
+
+    public function extractObjectFields(ModelFormImplementer $model, string $group_name = 'group', string $group_classes = 'row'): FormBuilder
+    {
+        foreach ($model->getFormFields() as $field) {
+            $this->addElement($field, $group_name, $group_classes);
+        }
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function render(): string
+    {
+        return $this->build();
     }
 
     public function build(): string
     {
         $form = $this->getFormHeader();
-        foreach ($this->groups as $group => $classes){
+        foreach ($this->groups as $group => $classes) {
             $form .= "<div id='{$group}' class='{$classes}'>";
             $form .= $this->renderElementsGroup($group);
             $form .= "</div>";
@@ -44,18 +67,6 @@ class FormBuilder extends Element
                 >";
     }
 
-    private function getFormCloseTag(): string
-    {
-        return "</form>";
-    }
-
-    public function addElement(HtmlElement $field, string $group_name = 'group', string $group_classes = 'row'): FormBuilder
-    {
-        $this->fields[$group_name][] = $field;
-        $this->groups[$group_name] = $group_classes.' form-group';
-        return $this;
-    }
-
     /**
      * @param $group
      * @return string
@@ -70,11 +81,8 @@ class FormBuilder extends Element
         return $elements;
     }
 
-    /**
-     * @return string
-     */
-    public function render(): string
+    private function getFormCloseTag(): string
     {
-        return $this->build();
+        return "</form>";
     }
 }
