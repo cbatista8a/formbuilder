@@ -4,16 +4,14 @@
 namespace Cbatista8a\Formbuilder\Classes;
 
 
-class Element
+use Cbatista8a\Formbuilder\Interfaces\HtmlElement;
+
+abstract class Element implements HtmlElement
 {
     /**
      * @var Attribute[]
      */
     protected array $attributes = [];
-
-    public function __construct()
-    {
-    }
 
     /**
      * @param Attribute $attribute
@@ -65,4 +63,6 @@ class Element
     {
         return  bin2hex(random_bytes(10));
     }
+
+    abstract public function render(): string;
 }
