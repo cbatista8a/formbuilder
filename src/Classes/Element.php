@@ -41,16 +41,20 @@ abstract class Element implements HtmlElement
     }
 
     /**
+     * @param array $exclude
      * @return string
+     * @throws \Exception
      */
-    public function renderHtmlAttributes():string
+    public function renderHtmlAttributes($exclude = []):string
     {
         $html_attr = [];
         if (empty($this->attributes['id'])){
             $html_attr[] = 'id="'.$this->getRandomId() . '"';
         }
         foreach ($this->attributes as $attribute){
-            $html_attr[] = $attribute->render();
+            if (!in_array($attribute->getName(),$exclude,true)) {
+                $html_attr[] = $attribute->render();
+            }
         }
         return implode(' ',$html_attr);
     }
