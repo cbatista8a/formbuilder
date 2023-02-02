@@ -11,7 +11,7 @@ $model = new Model();
 $form = new FormBuilder();
 $form->addAttribute(new Attribute('id','form-test'))
     ->addAttribute(new Attribute('action','example.php'))
-    ->addAttribute(new Attribute('classes','form-group'))
+    ->addAttribute(new Attribute('class','form-group'))
     ->extractObjectFields($model,'model-group','row')
     ->addElement(new Button('submit','Save'),'form-footer');
 echo $form->build();
