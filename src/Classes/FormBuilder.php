@@ -8,7 +8,7 @@ use Cbatista8a\Formbuilder\Interfaces\ModelFormImplementer;
 class FormBuilder extends Element
 {
     /**
-     * @var Input[]
+     * @var Element[]
      */
     private array $fields;
     /**
