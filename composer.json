@@ -2,7 +2,7 @@
     "name": "cbatista8a/formbuilder",
     "type": "library",
     "license": "MIT",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "autoload": {
         "psr-4": {
             "Cbatista8a\\Formbuilder\\": "src/"
